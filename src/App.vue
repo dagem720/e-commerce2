@@ -1,32 +1,42 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<v-app >
+<v-overlay :value="overlay" v-if="loading">
+  <v-img
+  src="./assets/pngegg.png"
+  height="75px"
+  width="75px"
+  ></v-img>
+      <v-progress-circular indeterminate size="75" ></v-progress-circular>
+    </v-overlay>
+ 
+ 
+<v-main v-else> 
+ <router-view></router-view>
+</v-main>
+
+  </v-app>
 </template>
+<script>
+/*disable-eslint*/
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+export default {
+  data(){return{
+    
+    overlay: true,
+      
+  }},
 
-#nav {
-  padding: 30px;
-}
+computed:{
+  loading()
+  {
+    return this.$store.getters.windowLoad
+  },
+ 
+},
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
 }
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style lang="">
+ 
 </style>
